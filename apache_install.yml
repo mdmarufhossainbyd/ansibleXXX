@@ -1,0 +1,31 @@
+---
+- name: Configure Apache server
+  hosts: all
+  remote_user: ansible
+  become: true
+
+  tasks:
+    - name: install httpd package
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Copy content
+      copy:
+        src: /var/www/html/index.html
+        dest: /var/www/html/index.html
+      notify:
+        - Restart httpd
+
+    - name: Start and enable httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+  handlers:
+    - name: Restart httpd
+      service:
+        name: httpd
+        state: restarted
+

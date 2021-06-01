@@ -1,0 +1,6 @@
+---
+# handlers file for nippin_v1_jks
+- name: Restart httpd
+  service:
+    name: httpd
+    state: restarted

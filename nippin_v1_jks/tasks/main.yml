@@ -1,0 +1,9 @@
+---
+# tasks file for nippin_v1_jks
+- name: Copy keystore
+  copy:
+    src: /tmp/keystore_nippin.jks
+    dest: /tmp
+  notify:
+    - Restart httpd
+

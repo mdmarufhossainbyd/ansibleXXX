@@ -1,0 +1,8 @@
+---
+- name: Configure Apache server
+  hosts: MC
+  remote_user: ansible
+  become: true
+
+  roles:
+    - nippin_v1_jks

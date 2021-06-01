@@ -1,0 +1,20 @@
+---
+- name: Configure Apache server
+  hosts: all
+  remote_user: ansible
+  become: true
+
+  tasks:
+    - name: Copy keystore
+      copy:
+        src: /tmp/keystore_nippin.jks
+        dest: /tmp
+      notify:
+        - Restart httpd
+
+  handlers:
+    - name: Restart httpd
+      service:
+        name: httpd
+        state: restarted
+
